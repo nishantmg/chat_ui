@@ -1,7 +1,7 @@
-<ion-header>
+  <ion-header>
   <ion-toolbar>
     <ion-title>
-      Chatting App
+      {{username}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,20 +10,20 @@
  
   <ion-grid>
     <ion-text color="medium" class="ion-text-center">
-      <p>You joined the chat as {{ currentUser }}</p>
+      <p>You joined the chat as {{ username }}</p>
     </ion-text>
     <ion-row *ngFor="let message of messages">
  
-      <ion-col size="9" *ngIf="message.user !== currentUser" class="message other-message">
+      <ion-col size="9" *ngIf="message.user !== username" class="message other-message">
         <b>{{ message.user }}</b><br>
-        <span>{{ message.msg }}</span>
-        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+        <span>{{ message.msg.text}}</span>
+        <div class="time ion-text-right" ><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
-      <ion-col offset="3" size="9" *ngIf="message.user === currentUser" class="message my-message">
+      <ion-col offset="3" size="9" *ngIf="message.user === username" class="message my-message">
         <b>{{ message.user }}</b><br>
-        <span>{{ message.msg }}</span>
-        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+        <span>{{ message.msg.text }}</span>
+        <div class="time ion-text-right" ><br>{{ message.createdAt | date:'short' }}</div>
       </ion-col>
  
     </ion-row>

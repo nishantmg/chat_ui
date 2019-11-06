@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+        
+            <ion-label>Username or E-mail</ion-label>
+            <ion-input type="E-mail" [(ngModel)]="username"></ion-input>
+            <ion-label>Password</ion-label>
+            <ion-input type="Password"></ion-input>
+            <ion-label>Re-type Password</ion-label>
+            <ion-input type="Password"></ion-input>
+            <ion-button [href]="'home/'+ username" routerDirection="forward" color="primary">Login</ion-button>
+            <a style="text-decoration: none" href="login/signup">Create an new account?</a>
+          
+    </ion-card-content>
+  </ion-card>
+</ion-content>

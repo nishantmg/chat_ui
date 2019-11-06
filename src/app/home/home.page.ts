@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,20 +11,22 @@ import { ToastController } from '@ionic/angular';
 export class HomePage implements OnInit {
   message='';
   messages = [];
-  currentUser='';
+  username ='';
 
   constructor(
     private socket: Socket,
-    private toastCtrl:ToastController
+    private toastCtrl:ToastController,
+    private route : ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.socket.connect();
  
-    let name = `user-${new Date().getTime()}`;
-    this.currentUser = name;
+    // let name = `user-${new Date().getTime()}`;
+    let name = this.route.snapshot.paramMap.get('username');
+    this.username = name;
     
-    this.socket.emit('set-name', name);
+    this.socket.emit('set-username', name);
  
     this.socket.fromEvent('users-changed').subscribe(data => {
       let user = data['user'];
